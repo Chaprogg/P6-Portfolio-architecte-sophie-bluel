@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -84,6 +83,262 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+/*********** Headbandeau ***********/
+.headbandeau {
+	/* display: none; */
+	height: 60px;
+	background-color: black;
+	color: white;
+	justify-content: center;
+	align-items: center;
+	margin: 0px -28px 0px -28px;
+	gap: 10px;
+}
+/*********** Main Modal ***********/
+.modal-icon {
+	position: relative;
+	font-size: initial;
+	color: black;
+	display: inline-flex;
+	align-items: baseline;
+	margin-bottom: 50px;
+	gap: 10px;
+	top: -50px;
+	left: 700px;
+}
+
+.fa-trash-can {
+	position: absolute;
+    top: 6px;
+    right: 5px;
+    color: #fff;
+    background: black;
+    padding: 3px 4px 3px 4px;
+    font-size: 10px;
+    font-weight: 900;
+    border-radius: 2px;
+}
+
+.p-modifier {
+	font-family: syne;
+	font-size: small;
+}
+
+.modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	right: 0px;
+	background: rgba(0, 0, 0, 0.8);
+}
+/****************************************************/
+.addPictureModal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	right: 0px;
+	background: rgba(0, 0, 0, 0.8);
+}
+/****************************************************/
+.modal-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffff;
+	border-radius: 10px;
+	padding: 60px 106px 53px;
+}
+
+.titleModal {
+	text-align: center;
+    margin-bottom: 46px;
+    font-size: 26px;
+}
+
+.fa-xmark {
+	position: absolute;
+	font-size: 20px;
+	top: 25px;
+	right: 36px;
+	cursor: pointer;
+}
+
+.modalGallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 8px;
+	grid-row-gap: 29px;
+	margin-bottom: 98px;
+	
+}
+
+.modalGallery img {
+	width: 77px;
+	height: 102px;
+}
+
+.buttonAddPictureAccessModal {
+	font-family: syne;
+    color: #fff;
+	border: none;
+    border-radius: 60px;
+    padding: 8px 54px 8px 54px;
+    background: #1D6154;
+	cursor: pointer;
+}
+
+/*********** Modal Add Picture ***********/
+.addPicture {
+	display: flex;
+ 	justify-content: center;
+	flex-direction: column;
+	align-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 420px;
+	height: 170px;
+	background-color: #E8F1F6;
+	gap: 12px;
+	margin-top: 17px;
+	margin-bottom: 10px;
+}
+
+.h3Picture {
+	text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.fa-arrow-left {
+		position: absolute;
+		top: 26px;
+		left: 30px;
+		font-size: 26px;
+		color: #000;
+		cursor: pointer;
+}
+
+.fa-mountain-sun {
+	font-size: 42px;
+	color: #B9C5CC ;
+	border: 6px solid #B9C5CC;
+    border-radius: 13px;
+    display: flex;
+    padding: 6px 1px 0px 1px;
+}
+
+.addPictureButton {
+	color: #306685;
+	background-color: #CBD6DC;
+	font-weight: 700;
+	border-radius: 50px;
+	padding: 10px 33px 10px 33px;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.titleInputPicture {
+	display: flex;
+	flex-direction: column;
+}
+
+.categoriePictureSelect {
+	display: flex;
+	flex-direction: column;
+}
+
+.modalPictChampInputSelect {
+	width: 420px;
+	height: 50px;
+	border: none;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	margin-top: 12px;
+}
+
+.formAddPicture {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.linerTopButtonValidatePicture {
+	position: absolute;
+	border-top: 1px solid #B3B3B3;
+	width: 66%;
+	top: 546px;
+}
+
+.buttonValidatPicture {
+	font-family: syne;
+    color: #fff;
+    border-radius: 60px;
+    padding: 10px 92px 10px 92px;
+    background: #A7A7A7;
+	border: none;
+	margin-top: 63px;
+	cursor: pointer;
+}
+/*********** Nav Link ***********/
+.instagram {
+	height: 20px;
+}
+/*********** Login ***********/
+#login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.loginPage {
+	font-weight: bold;
+}
+.inputForm {
+	display: flex;
+	width: 350px;
+	height: 50px;
+	font-size: 1.2em;
+	margin-top: 8px;
+	margin-bottom: 25px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding: 0px 15px 0px 15px;
+}
+
+.lostPasswordUnderline {
+	text-decoration: underline;
+}
+.footerNavLogin {
+	justify-content: flex-end;
+}
+
+.errorLogin {
+	color: red;
+	font-size: larger;
+}
+.errorInput {
+	border: red;
+}
+/*********** Added Code  delet or keep ***********/
+header a {
+	text-decoration: none;
+}
+/******************************/
 nav ul {
 	display: flex;
 	align-items: center;
@@ -125,6 +380,33 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+/*********** Add buttons nav ***********/
+.portfolioNav {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.buttonCategories {
+	display: flex;
+    justify-content: center;
+    font-family: syne;
+    color: #1D6154;
+    border-radius: 60px;
+    border: 1px solid #1D6154;
+    padding: 9px 20px 9px 20px;
+    font-size: 1.1em;
+    margin-bottom: 3em;
+    background: white;
+	cursor: pointer;
+}
+
+.buttonSelectedCategories{
+    background: #1D6154;
+	border: none;
+	color: white;
+}
+/*********** End Added Code ***********/
 .gallery {
 	width: 100%;
 	display: grid;
@@ -179,10 +461,24 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+/*********** Added Code ***********/
+.inputLogin[type="submit"]{
+	display: flex;
+	justify-content: center;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+	border: none;
+	padding: 10px;
+}
 
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
-
