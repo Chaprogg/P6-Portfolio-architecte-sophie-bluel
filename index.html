@@ -7,18 +7,26 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/4016225406.js" crossorigin="anonymous"></script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="assets/javascripts/index.js" defer type="module"></script>
+	
 </head>
 <body>
+	<section id="headBandeau" class="headbandeau" style="display: none;"><i class="fa-regular fa-pen-to-square"></i>Mode édition</section>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			<li>
+				<a href="index.html#contact">contact</a>
+			</li>
+			<li>
+				<a class="login" href="login.html">login</a>
+			</li>
+			<li><img class="instagram" src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
@@ -36,52 +44,48 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
+		<a href="mainModal" class="modifier" style="display:none; text-decoration: none;"><i class="fa-regular fa-pen-to-square modal-icon"><span class="p-modifier">modifier</span></i></a>
+		<nav class="portfolioNav"></nav>
 		<div class="gallery">
-			<figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
+			
 		</div>
+		<aside id="mainModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="title-modal" style="display:none;">
+			<div class="modal-wrapper">
+				<h3 class="titleModal" id="title-modal">Galerie photo</h3>
+				<i class="fa-solid fa-xmark"></i>
+				<div class="modalGallery">
+
+				</div>
+				<span class="linerTopButtonValidatePicture"></span>
+				<a href="addPictureModal"><button class="buttonAddPictureAccessModal">Ajouter une photo</button></a>
+			</div>
+		</aside>
+		<aside id="addPictureModal" class="addPictureModal" aria-modal="true" role="dialog" aria-labelledby="title-modal-add-pict" style="display:none;">	
+			<div class="modal-wrapper">
+				<a href="mainModal"><i class="fa-solid fa-arrow-left"></i></a>
+				<i class="fa-solid fa-xmark"></i>
+				<h3 class="h3Picture" id="title-modal-add-pict" >Ajout photo</h3>
+				<form  class="formAddPicture" action="" method="post">
+					<div class="addPicture">
+						<i class="fa-solid fa-mountain-sun fa-flip-horizontal"></i>
+						<label for="file" class="addPictureButton">+ Ajouter photo</label>
+						<input  id="file" class="hidden" accept="image/png, image/jpeg, image/jpg"  type="file" name="file">
+						<p class="text-xs">jpg, png : 4mo max</p>
+					</div>
+					<div class="titleInputPicture">
+						<label for="title">Titre</label>
+						<input class="modalPictChampInputSelect" id="title" type="text" name="title" >
+					</div>
+					<div class="categoriePictureSelect">
+						<label for="categorie">Catégorie</label>
+						<select class="modalPictChampInputSelect" name="categorie" id="categorie">
+						</select>
+					</div>
+					<span class="linerTopButtonValidatePicture"></span>
+					<span><button href="addPictureModale" class="buttonValidatPicture">Valider</button></span>
+				</form>
+			</div>
+		</aside>
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
