@@ -42,9 +42,9 @@ async function displayPortfolioCategory () {
 }
 displayPortfolioCategory()
 
-// Display of Array at Objects non Filtered in DOM HTML
+// Displaying unfiltered array objects in DOM HTML
 async function displayWorksList (arrayWorksResponse) {
-    
+    divGallery.innerHTML =""
     arrayWorksResponse.forEach((elementWorks) => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
@@ -74,6 +74,7 @@ async function filterCategories() {
             buttonSelected.forEach((button) => {
                 button.classList.remove("buttonSelectedCategories");
               });
+
               elementSelected.classList.add("buttonSelectedCategories");
             const selectedCategorie = event.target.id;
             divGallery.innerHTML = "";
@@ -83,25 +84,28 @@ async function filterCategories() {
                 });
     
                 displayWorksList(filteredWorks);
+
             } else {
                 displayWorksList (arrayWorksResponse);   
             }
         });
     });
 }
+
 filterCategories()
 
 // Modal Display Gallery
 async function modalDisplayWorksList (modalArrayWorksResponse) {
-    
+    divModal.innerHTML =""
     modalArrayWorksResponse.forEach((elementWorks) => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
         const spanTrash = document.createElement("span")
         const icon = document.createElement("i")
         icon.classList.add("fa-solid", "fa-trash-can")
+        icon.id = elementWorks.id
         spanTrash.style.position = "absolute"
-        img.src = elementWorks.imageUrl
+        img.src = elementWorks.imageUrl  
         figure.classList.add("galleryStyle")
         
         spanTrash.addEventListener("click",() =>{
@@ -113,6 +117,7 @@ async function modalDisplayWorksList (modalArrayWorksResponse) {
         figure.appendChild(spanTrash)
         divModal.appendChild(figure)        
     console.log(spanTrash)
+    console.log(icon)
     });
     console.log(modalArrayWorksResponse);
     
@@ -121,7 +126,6 @@ const modalArrayWorksResponse = await getWorks();
 modalDisplayWorksList(modalArrayWorksResponse);
 
 // Session loged and Logout buttons Modal
-
 const log = window.sessionStorage.token
 const login = document.querySelector("header .login")
 const headBandeau = document.querySelector(".headbandeau")
@@ -133,8 +137,8 @@ const faXmark = document.querySelector(".fa-xmark")
 const faXmark2 = document.querySelector("#addPictureModal .fa-xmark")
 const faArrowLeft = document.querySelector(".fa-arrow-left")
 const addPictureModal =document.querySelector(".buttonAddPictureAccessModal")
-
-if (log !== undefined) {
+// log !== undefined
+if (log !== false) {
     login.textContent ="logout"
     headBandeau.style.display = "flex"
     modifierAccess.style.display = "flex"
@@ -145,7 +149,6 @@ if (log !== undefined) {
     });
 }
 
-console.log(log)
 // Modal One
  modifierAccess.addEventListener("click", (event) => {
     event.preventDefault();
@@ -188,4 +191,29 @@ modal2.addEventListener("click", (event) => {
 })
 
 // Modal Delete Picture
-const 
+function removePicture() {
+    const trash = document.querySelectorAll(".fa-trash-can")
+    trash.forEach(remove => {
+        remove.addEventListener("click", () => {
+            const idRemoved = remove.id
+            const removeUpdate ={
+                method:'DELETE',
+                Headers:{"content-Type": "application/json"},
+            }
+            fetch("http://localhost:5678/api/works/" +idRemoved,removeUpdate)
+            .then((noDelet) => {
+                if (!noDelet.ok) {
+                    console.log("Pas de suppression")
+                }
+                return noDelet.json()
+            })
+            .then((effectiveDelete) => {
+                console.log("Suppression OK = " ,effectiveDelete)
+                displayWorksList (arrayWorksResponse)
+                modalDisplayWorksList(modalArrayWorksResponse)
+            })
+        })
+    })
+}
+
+removePicture()
