@@ -1,74 +1,68 @@
 // Access DOM HTML
-const PortfolioH2 = document.querySelector("#portfolio h2")
-const portfolioNav = document.querySelector("#portfolio nav")
-const divGallery = document.querySelector(".gallery")
-const divModal = document.querySelector(".modalGallery")
-// Function Import works objects of array at Json format
+const PortfolioH2 = document.querySelector("#portfolio h2");
+const portfolioNav = document.querySelector("#portfolio nav");
+const divGallery = document.querySelector(".gallery");
+const divModal = document.querySelector(".modalGallery");
+
+// Import objects of json format
 async function getWorks() {
     const arrayWorksRequest = await fetch("http://localhost:5678/api/works");
     return await arrayWorksRequest.json();   
 }
  
-// Creat nav balise
-//const navBalise = document.createElement("nav")
-//introduction.appendChild(navBalise)
-//console.log(navBalise)
-
 //Creat button-nav for all Categories
 const buttonAll = document.createElement("button");
 buttonAll.innerText = "Tous"
-buttonAll.id = 0
-buttonAll.classList.add("buttonSelectedCategories")
+buttonAll.id = 0;
+buttonAll.classList.add("buttonSelectedCategories");
 portfolioNav.appendChild(buttonAll);
 portfolioNav.classList.add("portfolioNav");
 buttonAll.classList.add("buttonCategories");
 
-// Function import objectsof a category of array at json format
+// Import category object from table in json format
 async function getCategories () {
     const arrayCategoriesResponse = await fetch("http://localhost:5678/api/categories");
     return await arrayCategoriesResponse.json();   
 }
 
-// Display button category of array-categories
+// Create a button for each category
 async function displayPortfolioCategory () {
     const arrayCategoriesDisplay = await getCategories();
     arrayCategoriesDisplay.forEach(elementCategories => {
         const buttonCategories = document.createElement("button");
         buttonCategories.textContent = elementCategories.name
         buttonCategories.id = elementCategories.id
-        buttonCategories.classList.add("buttonCategories")
-        portfolioNav.appendChild(buttonCategories)
+        buttonCategories.classList.add("buttonCategories");
+        portfolioNav.appendChild(buttonCategories);
     });
 }
-displayPortfolioCategory()
+displayPortfolioCategory();
 
-// Displaying unfiltered array objects in DOM HTML
+// Showing unfiltered array objects in HTML DOM (Affichage des objets non filtrés)
 async function displayWorksList (arrayWorksResponse) {
     divGallery.innerHTML =""
     arrayWorksResponse.forEach((elementWorks) => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
         const figcaption = document.createElement("figcaption");
-        img.src = elementWorks.imageUrl
-        figcaption.textContent = elementWorks.title
-        figure.classList.add("galleryStyle")
+        img.src = elementWorks.imageUrl;
+        figcaption.textContent = elementWorks.title;
+        figure.classList.add("galleryStyle");
         
         figure.appendChild(img);
         figure.appendChild(figcaption);
-        divGallery.appendChild(figure)
-        
+        divGallery.appendChild(figure);
     });
-    console.log(arrayWorksResponse)
-}
-const arrayWorksResponse = await getWorks();
+};
+//
+const arrayWorksResponse = await getWorks(); // peut etre mal placer?
 displayWorksList(arrayWorksResponse);
 
-// AddEventListener Display Filtered by Buttons of Categories
+// Categories Filtered by Buttons 
 async function filterCategories() {
     const arrayfilterCategories = await getWorks();
     const buttonSelected = document.querySelectorAll("#portfolio nav button");
-        console.log(buttonSelected)
-// Considered All buttons for this fonction
+// For each button display its category (pour chaque categorie afficher un bouton)
     buttonSelected.forEach(elementSelected => {
         elementSelected.addEventListener("click",(event) =>{
             buttonSelected.forEach((button) => {
@@ -90,9 +84,8 @@ async function filterCategories() {
             }
         });
     });
-}
-
-filterCategories()
+};
+filterCategories();
 
 // Modal Display Gallery
 async function modalDisplayWorksList (modalArrayWorksResponse) {
@@ -100,120 +93,265 @@ async function modalDisplayWorksList (modalArrayWorksResponse) {
     modalArrayWorksResponse.forEach((elementWorks) => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
-        const spanTrash = document.createElement("span")
-        const icon = document.createElement("i")
-        icon.classList.add("fa-solid", "fa-trash-can")
-        icon.id = elementWorks.id
+        const spanTrash = document.createElement("span");
+        const icon = document.createElement("i");
+        icon.classList.add("fa-solid", "fa-trash-can");
+        icon.id = elementWorks.id;
         spanTrash.style.position = "absolute"
-        img.src = elementWorks.imageUrl  
-        figure.classList.add("galleryStyle")
-        
-        spanTrash.addEventListener("click",() =>{
-
-        })
-
+        img.src = elementWorks.imageUrl;
+        figure.classList.add("galleryStyle");
         figure.appendChild(img);
-        spanTrash.appendChild(icon)
-        figure.appendChild(spanTrash)
-        divModal.appendChild(figure)        
-    console.log(spanTrash)
-    console.log(icon)
+        spanTrash.appendChild(icon);
+        figure.appendChild(spanTrash);
+        divModal.appendChild(figure);
     });
     console.log(modalArrayWorksResponse);
-    
+    removePicture(); 
 }
+
 const modalArrayWorksResponse = await getWorks();
 modalDisplayWorksList(modalArrayWorksResponse);
 
-// Session loged and Logout buttons Modal
+// Session login and Logout buttons Modal
 const log = window.sessionStorage.token
-const login = document.querySelector("header .login")
-const headBandeau = document.querySelector(".headbandeau")
-const logout = document.querySelector("header nav .logout")
-const modifierAccess = document.querySelector(".modifier")
-const mainModal = document.querySelector("#mainModal")
-const modal2 = document.querySelector(".addPictureModal")
-const faXmark = document.querySelector(".fa-xmark")
-const faXmark2 = document.querySelector("#addPictureModal .fa-xmark")
-const faArrowLeft = document.querySelector(".fa-arrow-left")
-const addPictureModal =document.querySelector(".buttonAddPictureAccessModal")
-// log !== undefined
-if (log !== false) {
-    login.textContent ="logout"
-    headBandeau.style.display = "flex"
-    modifierAccess.style.display = "flex"
-    portfolioNav.style.display = "none"
-    login.addEventListener("click", () => {
-        window.sessionStorage.removeItem("token")
-        window.sessionStorage.removeItem("userId")
-    });
-}
+const login = document.querySelector("header .login");
+const headBandeau = document.querySelector(".headbandeau");
+const logout = document.querySelector("header nav .logout");
+const modifierAccess = document.querySelector(".modifier");
+const mainModal = document.getElementById("mainModal");
+const modal2 = document.getElementById("addPictureModal");
+const faXmark = document.querySelector(".fa-xmark");
+const faXmark2 = document.querySelector("#addPictureModal .fa-xmark");
+const faArrowLeft = document.querySelector(".fa-arrow-left");
+const addPictureModal =document.querySelector(".buttonAddPictureAccessModal");
 
-// Modal One
+if (log !== undefined) {
+    login.textContent ="logout";
+    headBandeau.style.display = "flex";
+    modifierAccess.style.display = "flex";
+    portfolioNav.style.display = "none";
+    login.addEventListener("click", () => {
+        window.sessionStorage.removeItem("token");
+        window.sessionStorage.removeItem("userId");
+    });
+};
+
+// Modal One Access
  modifierAccess.addEventListener("click", (event) => {
     event.preventDefault();
-    mainModal.style.display = "flex"
-})
-
+    mainModal.style.display = "flex";
+});
+// Close Main modal
 mainModal.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log(event.target.className)
+    console.log(event.target.className);
     if (event.target.className == "modal") {
-       mainModal.style.display = "none"
-    }
-})
+       mainModal.style.display = "none";
+    };
+});
 
 faXmark.addEventListener("click", (event) => {
-    mainModal.style.display = "none"
-})
+    mainModal.style.display = "none";
+});
 
-// Modal Two
 addPictureModal.addEventListener("click", (event) => {
     event.preventDefault();
-    mainModal.style.display ="none"
-    modal2.style.display = "flex"
-})
+    mainModal.style.display ="none";
+    modal2.style.display = "flex";
+});
 
+// Modal Two Access
 faXmark2.addEventListener("click", (event) => {
-    modal2.style.display = "none"
-}) 
+    modal2.style.display = "none";
+});
 
 faArrowLeft.addEventListener("click", (event) => {
     event.preventDefault()
     mainModal.style.display = "flex"
     modal2.style.display = "none"    
-})
+});
 
 modal2.addEventListener("click", (event) => {
      if (event.target.className == "addPictureModal") {
         modal2.style.display = "none"
-     }
-})
+     };
+});
 
 // Modal Delete Picture
 function removePicture() {
     const trash = document.querySelectorAll(".fa-trash-can")
     trash.forEach(remove => {
         remove.addEventListener("click", () => {
-            const idRemoved = remove.id
+            location.reload();
+            const idRemoved = remove.id;
             const removeUpdate ={
                 method:'DELETE',
-                Headers:{"content-Type": "application/json"},
-            }
-            fetch("http://localhost:5678/api/works/" +idRemoved,removeUpdate)
+                headers:{"content-Type": "application/json", "Authorization": `Bearer ${log}` },
+            };
+
+            fetch("http://localhost:5678/api/works/" +idRemoved,removeUpdate,)
             .then((noDelet) => {
-                if (!noDelet.ok) {
-                    console.log("Pas de suppression")
-                }
-                return noDelet.json()
+                //if (!noDelet.ok) {
+                 //   console.log("Pas de suppression");
+               // }
+                // Cela veut dire retourner les Id(s) (Les Filtrer les Afficher) des Objet qui son differente des Id(s) supprimer
+                const filteredWorks = arrayWorksResponse.filter ((selected) => {
+                    return selected.id != idRemoved;    
+                });
+                    console.log("Suppression OK")
+                    displayWorksList (filteredWorks)    
             })
-            .then((effectiveDelete) => {
-                console.log("Suppression OK = " ,effectiveDelete)
-                displayWorksList (arrayWorksResponse)
-                modalDisplayWorksList(modalArrayWorksResponse)
-            })
+            
         })
     })
 }
 
 removePicture()
+
+// Modal Add Picture
+const preview = document.querySelector(".preview")
+const faImage = document.querySelector(".fa-image")
+const label = document.querySelector(".addPictureButton")
+const inputFile = document.querySelector(".hidden")
+const paragraph = document.querySelector(".text-add-picture")
+ 
+// Input File IMG
+inputFile.addEventListener("change", () => {
+    const file = inputFile.files[0]
+    console.log(file)
+    if (file) {
+        const reader = new FileReader()
+        reader.onload = function (event) {
+            preview.src = event.target.result
+            preview.style.display = "flex"
+            faImage.style.display = "none"
+            label.style.display = "none"
+            paragraph.style.display = "none"
+        }
+        reader.readAsDataURL(file)
+    }
+})
+
+// Function Vérification and validation  type of MIME
+
+
+//myForm.addEventListener("submit", (event) => {
+  //  const imgFile = document.getElementById("file")
+    //const myRegex =   new RegExp  \\.(jpg|gif|png)
+
+    //if (imgFile.value.trim() == "") {
+      //  const error = document.getElementById("Error")
+        //error.innerHTML = "Une image valide est requise."
+        //error.style.color ="red"
+        //event.preventDefault()
+    //} else {
+      //  console.log
+
+    //}
+//})
+
+// Javascript program to validate
+// Image File using Regular Expression
+ 
+// Function to validate the
+// Image File
+
+const imgFile = document.getElementById("file")
+const picture = document.getElementById("picture")
+function imageFile(imgFile) {
+    // Regex to check valid
+    // Image File
+    let regex = new RegExp(/\\.(jpg|jpeg|png|JPG|JPEG|PNG|)$/);
+ 
+    // if str
+    // is empty return false
+    if (!regex.test (value)) {
+        picture.innerHTML = "error"
+        picture.style.color ="red"
+    }
+ 
+    // Return true if the str
+    // matched the ReGex
+    if (regex.test(imgFile) == true) {
+        return "true";
+        console.log(imgFile)
+    }
+    else {
+        return "false";
+    }
+    
+}
+
+//imageFile(imgFile);
+
+//Dynamique Select Options
+async function modalSelectCategorie() {
+    const selectCategorie = document.querySelector(".categorieSelect select")
+    const categories = await getCategories()
+    categories.forEach(categorie => {
+        const option = document.createElement("option")
+        option.value = categorie.id
+        option.textContent = categorie.name
+        selectCategorie.appendChild(option)
+    })    
+}
+modalSelectCategorie();
+
+//Post Picture
+const form = document.querySelector(".addPictureModal form")
+const title = document.querySelector(".addPictureModal #title")
+const categorie = document.querySelector(".addPictureModal #categorie")
+
+// Adding the image of its title and selecting the category (ajout de l'image de son titre et selection de sa categorie)
+form.addEventListener("submit", async (event) => {
+    event.preventDefault()
+    modal2.style.display = "none"
+    const file = inputFile.files[0]
+    const formSubmit = new FormData()
+    formSubmit.append("image",file)
+    formSubmit.append("category",categorie.value)
+    formSubmit.append("title",title.value)
+   
+    fetch("http://localhost:5678/api/works",{
+        method:"POST",
+        body:formSubmit,
+        headers:{"Authorization": `Bearer ${log}`},
+    })
+
+    // POST new image 
+    .then(result => result.json())
+    .then(resultJson => {
+        console.log(resultJson)
+        arrayWorksResponse.push(resultJson)
+        modalArrayWorksResponse.push(resultJson)
+        console.log("Formulaire valeur", resultJson)
+        displayWorksList(arrayWorksResponse)
+        modalDisplayWorksList(modalArrayWorksResponse)
+        form.reset()
+        preview.style.display = "none"
+        faImage.style.display = "flex"
+        label.style.display = "flex"
+        paragraph.style.display = "flex"
+    })
+    .catch((error) => console.log("listing error",error))
+})
+
+//Formulaire validation conditions
+const validatButton = document.querySelector(".formAddPicture button")
+const fileReset = document.getElementById("file")
+const titleReset =  document.getElementById("title")
+
+function formValidat() {
+
+    form.addEventListener("input", () => {
+        if (file.value !=="" && title.value !=="" && categorie.value !=="") {
+            validatButton.classList.add("buttonValidatePictureActive")
+            validatButton.disabled = false
+        }
+        else {
+            validatButton.classList.remove("buttonValidatePictureActive")
+            validatButton.disabled = true
+        }
+    })
+}
+formValidat();
