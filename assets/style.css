@@ -117,6 +117,7 @@ h2{
     font-size: 10px;
     font-weight: 900;
     border-radius: 2px;
+	cursor: pointer;
 }
 
 .p-modifier {
@@ -156,7 +157,7 @@ h2{
 	justify-content: center;
 	background-color: #ffff;
 	border-radius: 10px;
-	padding: 60px 106px 53px;
+	padding: 60px 106px 44px;
 }
 
 .titleModal {
@@ -193,7 +194,8 @@ h2{
     color: #fff;
 	border: none;
     border-radius: 60px;
-    padding: 8px 54px 8px 54px;
+    padding: 10px 54px 10px 54px;
+	margin-top: 25px;
     background: #1D6154;
 	cursor: pointer;
 }
@@ -229,15 +231,20 @@ h2{
 		cursor: pointer;
 }
 
-.fa-mountain-sun {
-	font-size: 42px;
+.fa-image {
+	font-size: 68px;
 	color: #B9C5CC ;
-	border: 6px solid #B9C5CC;
-    border-radius: 13px;
-    display: flex;
-    padding: 6px 1px 0px 1px;
 }
 
+.text-add-picture {
+	font-size: x-small;
+}
+
+.preview {
+	display: none;
+	width: 35%;
+	height: 100%;
+}
 .addPictureButton {
 	color: #306685;
 	background-color: #CBD6DC;
@@ -256,7 +263,7 @@ h2{
 	flex-direction: column;
 }
 
-.categoriePictureSelect {
+.categorieSelect {
 	display: flex;
 	flex-direction: column;
 }
@@ -277,20 +284,35 @@ h2{
 }
 
 .linerTopButtonValidatePicture {
-	position: absolute;
 	border-top: 1px solid #B3B3B3;
-	width: 66%;
-	top: 546px;
+	width: 100%;
+	margin-top: 30px;
+	margin-bottom: 13px;
 }
 
-.buttonValidatPicture {
+.buttonValidatePicture {
 	font-family: syne;
     color: #fff;
     border-radius: 60px;
     padding: 10px 92px 10px 92px;
+	margin-bottom: 12px;
     background: #A7A7A7;
 	border: none;
-	margin-top: 63px;
+	cursor: pointer;
+	/**&:focus {/
+		background-color: #1D6154;
+		color: #fff;
+	/*}*/
+}
+
+.buttonValidatePictureActive {
+	font-family: syne;
+    color: #fff;
+    border-radius: 60px;
+    padding: 10px 92px 10px 92px;
+	margin-bottom: 12px;
+    background: #1D6154;
+	border: none;
 	cursor: pointer;
 }
 /*********** Nav Link ***********/
