@@ -1,3 +1,0 @@
-//
-tabWorks()
-arrayDisplay()
