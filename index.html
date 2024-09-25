@@ -47,7 +47,7 @@
 		<a href="mainModal" class="modifier" style="display:none; text-decoration: none;"><i class="fa-regular fa-pen-to-square modal-icon"><span class="p-modifier">modifier</span></i></a>
 		<nav class="portfolioNav"></nav>
 		<div class="gallery">
-			
+
 		</div>
 		<aside id="mainModal" class="modal" aria-modal="true" role="dialog" aria-labelledby="title-modal" style="display:none;">
 			<div class="modal-wrapper">
@@ -65,24 +65,27 @@
 				<a href="mainModal"><i class="fa-solid fa-arrow-left"></i></a>
 				<i class="fa-solid fa-xmark"></i>
 				<h3 class="h3Picture" id="title-modal-add-pict" >Ajout photo</h3>
-				<form  class="formAddPicture" action="" method="post">
+				<form  id="myForm" class="formAddPicture" name="reset" method="post">
+					<span id="Error"></span>
 					<div class="addPicture">
-						<i class="fa-solid fa-mountain-sun fa-flip-horizontal"></i>
+						<i class="fa-regular fa-image"></i>
 						<label for="file" class="addPictureButton">+ Ajouter photo</label>
-						<input  id="file" class="hidden" accept="image/png, image/jpeg, image/jpg"  type="file" name="file">
-						<p class="text-xs">jpg, png : 4mo max</p>
+						<input type="file" id="file" name="image" class="hidden"  accept="image/png, image/jpeg, image/jpg"   >
+						<span id="picture"></span>
+						<img class="preview" src="#" alt="Picture preview">
+						<p class="text-add-picture">jpg, png : 4mo max</p>
 					</div>
 					<div class="titleInputPicture">
 						<label for="title">Titre</label>
 						<input class="modalPictChampInputSelect" id="title" type="text" name="title" >
 					</div>
-					<div class="categoriePictureSelect">
+					<div class="categorieSelect">
 						<label for="categorie">Catégorie</label>
-						<select class="modalPictChampInputSelect" name="categorie" id="categorie">
+						<select class="modalPictChampInputSelect" id="categorie" name="categories">
 						</select>
 					</div>
 					<span class="linerTopButtonValidatePicture"></span>
-					<span><button href="addPictureModale" class="buttonValidatPicture">Valider</button></span>
+					<span><button href="addPictureModale" type="submit" class="buttonValidatePicture">Valider</button></span>
 				</form>
 			</div>
 		</aside>
@@ -101,7 +104,6 @@
 		</form>
 	</section>
 </main>
-
 <footer>
 	<nav>
 		<ul>
