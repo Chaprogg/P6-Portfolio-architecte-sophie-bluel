@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/4016225406.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="assets/javascripts/index.js" type="module"></script>
+  </head>
+  <body>
+    <section id="headBandeau" class="headbandeau" style="display: none">
+      <i class="fa-regular fa-pen-to-square"></i>Mode édition
+    </section>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>
+            <a href="index.html#contact">contact</a>
+          </li>
+          <li>
+            <a class="login" href="login.html">login</a>
+          </li>
+          <li>
+            <img
+              class="instagram"
+              src="./assets/icons/instagram.png"
+              alt="Instagram"
+            />
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <figure>
+          <img src="./assets/images/sophie-bluel.png" alt="" />
+        </figure>
+        <article>
+          <h2>Designer d'espace</h2>
+          <p>
+            Je raconte votre histoire, je valorise vos idées. Je vous accompagne
+            de la conception à la livraison finale du chantier.
+          </p>
+          <p>
+            Chaque projet sera étudié en commun, de façon à mettre en valeur les
+            volumes, les matières et les couleurs dans le respect de l’esprit
+            des lieux et le choix adapté des matériaux. Le suivi du chantier
+            sera assuré dans le souci du détail, le respect du planning et du
+            budget.
+          </p>
+          <p>
+            En cas de besoin, une équipe pluridisciplinaire peut-être constituée
+            : architecte DPLG, décorateur(trice)
+          </p>
+        </article>
+      </section>
+      <section id="portfolio">
+        <h2>Mes Projets</h2>
+        <a href="mainModal" style="display: none; text-decoration: none"
+          ><i class="fa-regular fa-pen-to-square modal-icon"
+            ><span class="p-modifier">modifier</span></i
+          ></a
+        >
+        <nav class="portfolioNav"></nav>
+        <div class="gallery"></div>
+        <div
+          id="mainModal"
+          class="modalBackgroundTransparency"
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="title-modal"
+          style="display: none"
+        >
+          <div class="modal-wrapper">
+            <h3 class="titleModalOne" id="title-modal">Galerie photo</h3>
+            <i class="fa-solid fa-xmark"></i>
+            <div class="modalGallery"></div>
+            <span class="linerTopButtonModal"></span>
+            <a href="addPictureModal" class="buttonAddPictureAccessModal"
+              >Ajouter une photo</a
+            >
+          </div>
+        </div>
+        <div
+          id="addPictureModal"
+          class="modalBackgroundTransparency"
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="title-modal-add-pict"
+          style="display: none"
+        >
+          <div class="modal-wrapper">
+            <a href="mainModal"><i class="fa-solid fa-arrow-left"></i></a>
+            <i class="fa-solid fa-xmark"></i>
+            <h3 class="modal-two-title" id="title-modal-add-pict">
+              Ajout photo
+            </h3>
+            <form id="myForm" class="formAddPicture" name="reset" method="post">
+              <span id="Error"></span>
+              <div class="addPicture">
+                <i class="fa-regular fa-image"></i>
+                <label for="file" class="addPictureButton"
+                  >+ Ajouter photo</label
+                >
+                <input
+                  type="file"
+                  id="file"
+                  name="image"
+                  class="hidden-input"
+                  accept="image/png, image/jpeg, image/jpg"
+                />
+                <span id="picture"></span>
+                <img
+                  class="preview-added-picture"
+                  src="#"
+                  alt="Picture preview"
+                />
+                <p class="text-add-picture">jpg, png : 4mo max</p>
+              </div>
+              <div class="titleInputPicture">
+                <label for="title">Titre</label>
+                <input
+                  class="modalPictChampInput"
+                  id="title"
+                  type="text"
+                  name="title"
+                />
+              </div>
+              <div class="categorieSelect">
+                <label for="categorie">Catégorie</label>
+                <select
+                  class="modalPictChampInput"
+                  id="categorie"
+                  name="categories"
+                ></select>
+              </div>
+              <span class="linerTopButtonModal"></span>
+              <span
+                ><button type="submit" class="buttonValidatePicture">
+                  Valider
+                </button></span
+              >
+            </form>
+          </div>
+        </div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
